@@ -7,4 +7,4 @@ class TaskModelTest(TestCase):
         self.assertEqual(task.title, "Test Task")
         self.assertFalse(task.completed)
 
-# Create your tests here.
+# Create your tests here
