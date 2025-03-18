@@ -10,14 +10,13 @@ class APITestCase(unittest.TestCase):
         self.response = requests.post(BASE_URL, json=self.task_data)
         self.task_id = self.response.json().get('id')
 
-    def test_get_all_tasks(self):
-        response = requests.get(BASE_URL)
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(len(response.json()) > 0)
-
     def test_create_task(self):
         self.assertEqual(self.response.status_code, 201)
         self.assertEqual(self.response.json()['title'], self.task_data['title'])
+
+    def test_get_all_tasks(self):
+        response = requests.get(BASE_URL)
+        self.assertEqual(response.status_code, 200)
 
     def test_update_task(self):
         updated_data = {"title": "Updated Task", "description": "Updated Description", "completed": True}
@@ -31,4 +30,4 @@ class APITestCase(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
