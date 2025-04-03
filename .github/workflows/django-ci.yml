@@ -41,16 +41,17 @@ jobs:
         pip install -r requirements.txt
         pip install pytest pytest-django
 
+    - name: Set environment variables
+      run: |
+        echo "DJANGO_SETTINGS_MODULE=myproject.settings" >> $GITHUB_ENV
+        echo "DATABASE_URL=postgres://test_user:test_password@localhost:5432/test_db" >> $GITHUB_ENV
+
     - name: Run migrations
-      env:
-        DATABASE_URL: postgres://test_user:test_password@localhost:5432/test_db
       run: |
         source .venv/bin/activate
         python manage.py migrate
 
     - name: Run tests
-      env:
-        DATABASE_URL: postgres://test_user:test_password@localhost:5432/test_db
       run: |
         source .venv/bin/activate
-        pytest tasks/tests.py
+        python manage.py test
