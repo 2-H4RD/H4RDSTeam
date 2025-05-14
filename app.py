@@ -6,5 +6,8 @@ def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
     execute_from_command_line(sys.argv)
 
+#Final
+
 if __name__ == "__main__":
     main()
+
